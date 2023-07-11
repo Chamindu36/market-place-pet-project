@@ -1,4 +1,8 @@
-import { signInWithGooglePopup, createUserDocumentFromAuth, signInAuthUserWithEmailAndPassword } from "../../utils/firebase/firebase.utils";
+import {
+    signInWithGooglePopup,
+    createUserDocumentFromAuth,
+    signInAuthUserWithEmailAndPassword
+} from "../../utils/firebase/firebase.utils";
 import Button from "../button/button.component";
 import FormInput from "../form-input/form-input.components";
 
@@ -12,7 +16,6 @@ const defaultFormFields = {
 };
 
 const SignInForm = () => {
-
     const [formFields, setFormFields] = useState(defaultFormFields);
     const { email, password } = formFields;
 

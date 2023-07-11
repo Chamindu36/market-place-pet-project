@@ -5,8 +5,8 @@ import {
 
 import Button from "../button/button.component";
 import FormInput from "../form-input/form-input.components";
-
 import './sign-up-form.styles.scss';
+
 const { useState } = require("react");
 
 const defaultFormFields = {
@@ -17,7 +17,6 @@ const defaultFormFields = {
 };
 
 const SignUpForm = () => {
-
     const [formFields, setFormFields] = useState(defaultFormFields);
     const { displayName, email, password, confirmPassword } = formFields;
 
@@ -49,10 +48,12 @@ const SignUpForm = () => {
                 password
             );
             await createUserDocumentFromAuth(user, { displayName });
+
             // reset the form fields
             resetFormFields();
         } catch (error) {
             console.error('User creation on Firebase encountered an error: ', error);
+
             if (error.code === 'auth/email-already-in-use') {
                 alert('Email already in use');
             } else {
