@@ -9,7 +9,7 @@ const DirectoryItem = ({ category }) => {
                     backgroundImage: `url(${imageUrl})`,
                 }}
             />
-            <Body>
+            <Body to={`shop/${title.toLowerCase()}`}>
                 <h2>{title}</h2>
                 <p>Shop Now</p>
             </Body>
