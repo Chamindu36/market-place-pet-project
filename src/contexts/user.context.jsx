@@ -17,7 +17,6 @@ export const UserProvider = ({ children }) => {
             if (user) {
                 createUserDocumentFromAuth(user);
             }
-            console.log('Logged user: ', user);
             setCurrentUser(user);
         });
 
