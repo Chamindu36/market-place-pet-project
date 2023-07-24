@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect, useReducer } from 'react';
 
 const addItem = (cartItems, productToAdd) => {
     // check whether the item is already in the cart
