@@ -15,3 +15,9 @@ export const selectCategoriesMap = createSelector(
             return acc;
         }, {})
 );
+
+// Add categories is loading selector to use with spinner
+export const selectCategoriesIsLoading = createSelector(
+    [selectCategoryReducer],
+    (categoriesSlice) => categoriesSlice.isLoading
+);
