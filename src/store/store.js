@@ -39,7 +39,7 @@ export const store = createStore(
     composedEnhancers
 );
 
-sagaMiddleWare.run();
+sagaMiddleWare.run(rootSaga);
 
 export const persistor = persistStore(store);
 
