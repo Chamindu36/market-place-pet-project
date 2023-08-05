@@ -43,7 +43,7 @@ const SignUpForm = () => {
 
         // create the user upon sign up with email and password
         try {
-            dispatch(signUpStart({ email, password, displayName }));
+            dispatch(signUpStart(email, password, displayName));
             // reset the form fields
             resetFormFields();
         } catch (error) {

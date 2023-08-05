@@ -21,14 +21,12 @@ import {
 } from '../../utils/firebase/firebase.utils';
 
 export function* getSnapshotFromUserAuth(userAuth, additionalDetails) {
-    console.log('getSnapshotFromUserAuth', userAuth, '\ntttt::', additionalDetails);
     try {
         const userSnapshot = yield call(
             createUserDocumentFromAuth,
             userAuth,
             additionalDetails
         );
-        console.log('userSnapshot', userSnapshot);
         yield put(signInSuccess({ id: userSnapshot.id, ...userSnapshot.data() }));
     } catch (error) {
         yield put(signInFailed(error));
