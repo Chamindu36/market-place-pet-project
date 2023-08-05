@@ -12,6 +12,7 @@ import { selectIsCartOpen } from '../../store/cart/cart.selector';
 
 const Navigation = () => {
     const currentUser = useSelector(selectCurrentUser);
+    console.log("((((((((", currentUser);
     const isCartOpen = useSelector(selectIsCartOpen);
 
     const signOutHandler = async () => {
