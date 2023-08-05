@@ -139,6 +139,6 @@ export const getCurrentUser = () => {
                 resolve(userAuth);
             },
             reject
-        )
+        );
     });
 }

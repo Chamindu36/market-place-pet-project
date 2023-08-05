@@ -15,6 +15,7 @@ const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    console.log("Check user session dispath");
     dispatch(checkUserSession());
   }, [dispatch]);
 
