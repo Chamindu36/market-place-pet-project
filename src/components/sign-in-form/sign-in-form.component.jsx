@@ -1,13 +1,12 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 
-import {
-    signInAuthUserWithEmailAndPassword
-} from "../../utils/firebase/firebase.utils";
 import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
 import FormInput from "../form-input/form-input.components";
+
 import { SignInContainer, ButtonsContainer } from "./sign-in-form.styles";
-import { googleSignInStart } from "../../store/user/user.action";
+
+import { googleSignInStart, emailSignInStart } from "../../store/user/user.action";
 
 const defaultFormFields = {
     email: '',
@@ -40,17 +39,11 @@ const SignInForm = () => {
         event.preventDefault();
         try {
             // sign in with email and password
-            await signInAuthUserWithEmailAndPassword(email, password);
+            dispatch(emailSignInStart(email, password));
 
             resetFormFields();
         } catch (error) {
-            if (error.code === 'auth/wrong-password') {
-                alert('Incorrect password');
-            } else if (error.code === 'auth/user-not-found') {
-                alert('User not found');
-            } else {
-                console.error('User sign in encountered an error: ', error);
-            };
+            console.error('User sign in encountered an error: ', error);
         };
     };
 
