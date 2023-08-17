@@ -3,7 +3,7 @@ import { Fragment } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { ReactComponent as HomeLogo } from '../../assets/crown.svg';
-import { LogoContainer, NavLink, NavLinks, NavigationContainer } from './navigation.styles.jsx';
+import { LogoContainer, NavLink, NavLinks, NavigationContainer } from './navigation.styles';
 import CartIcon from '../../components/cart-icon/cart-icon.component';
 import CartDropdown from '../../components/cart-dropdown/cart-dropdown.component';
 import { selectCurrentUser } from '../../store/user/user.selector'

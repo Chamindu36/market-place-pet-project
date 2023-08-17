@@ -7,7 +7,7 @@ import { fetchCategoriesStart } from "../../store/category/category.action";
 import CategoriesPreview from "../categories-preview/categories-preview.component";
 import Category from "../category/category.component";
 
-import "./shop.styles.jsx";
+import "./shop.styles";
 
 const Shop = () => {
 
