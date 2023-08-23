@@ -8,6 +8,8 @@ import {
     signInWithEmailAndPassword,
     signOut,
     onAuthStateChanged,
+    User,
+    NextOrObserver,
 } from 'firebase/auth';
 
 import {
@@ -19,7 +21,10 @@ import {
     collection,
     writeBatch,
     query,
+    QueryDocumentSnapshot,
 } from 'firebase/firestore';
+
+import { Category } from '../../store/category/category.types';
 
 // Web app's Firebase configuration
 const firebaseConfig = {
@@ -47,7 +52,15 @@ export const signInWithGoogleRedirect = () => signInWithRedirect(auth, googlePro
 
 export const db = getFirestore();
 
-export const addCollectionAndDocuments = async (collectionKey, objects) => {
+// Define a type to add an object
+export type ObjectToAdd = {
+    title: string,
+}
+
+export const addCollectionAndDocuments = async <T extends ObjectToAdd>(
+    collectionKey: string, 
+    objects: Array<T>
+) : Promise<void> => {
     // create a batch to process multiple transactions
     const batch = writeBatch(db);
     // create a new collection
@@ -62,9 +75,10 @@ export const addCollectionAndDocuments = async (collectionKey, objects) => {
     // write all transactions in batch to db
     await batch.commit();
     console.log('done');
-}
+};
 
-export const getCategoriesAndDocuments = async () => {
+
+export const getCategoriesAndDocuments = async (): Promise<Category[]> => {
     // get collection reference
     const collectionRef = collection(db, 'categories');
     const q = query(collectionRef);
@@ -72,7 +86,9 @@ export const getCategoriesAndDocuments = async () => {
     // get all documents and create a map
     const querySnapshot = await getDocs(q);
 
-    return querySnapshot.docs.map(docSnapshot => docSnapshot.data());
+    return querySnapshot.docs.map(
+        docSnapshot => docSnapshot.data() as Category //casting for query objects
+    );
 
     // const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
     //     const { title, items } = docSnapshot.data();
@@ -83,7 +99,20 @@ export const getCategoriesAndDocuments = async () => {
     // return categoryMap;
 };
 
-export const createUserDocumentFromAuth = async (userAuth, additionalInfo) => {
+export type AdditionalInfo = {
+    displayName?: string;
+};
+
+export type UserData = {
+    createdAt: Date;
+    displayName: string;
+    email: string;
+}
+
+export const createUserDocumentFromAuth = async (
+    userAuth : User,
+    additionalInfo = {} as AdditionalInfo
+) : Promise<QueryDocumentSnapshot<UserData> |void> => {
     if (!userAuth) return;
 
     // create the user upon sign in 
@@ -106,19 +135,27 @@ export const createUserDocumentFromAuth = async (userAuth, additionalInfo) => {
                 ...additionalInfo,
             });
         } catch (error) {
-            console.log('Error creating user', error.message);
+            console.log('Error creating user', error);
         }
     }
+
+    return userSnapshot as QueryDocumentSnapshot<UserData>;
 };
 
-export const createAuthUserWithEmailAndPassword = async (email, password) => {
+export const createAuthUserWithEmailAndPassword = async (
+    email: string, 
+    password: string,
+) => {
     // if not either email or password is given, return
     if (!email || !password) return;
 
     return await createUserWithEmailAndPassword(auth, email, password);
 };
 
-export const signInAuthUserWithEmailAndPassword = async (email, password) => {
+export const signInAuthUserWithEmailAndPassword = async (
+    email : string, 
+    password : string,
+) => {
     // if not either email or password is given, return
     if (!email || !password) return;
 
@@ -127,10 +164,12 @@ export const signInAuthUserWithEmailAndPassword = async (email, password) => {
 
 export const signOutUser = async () => await signOut(auth);
 
-export const onAuthStateChangedListener = (callback) =>
+export const onAuthStateChangedListener = (
+    callback: NextOrObserver<User>
+) =>
     onAuthStateChanged(auth, callback);
 
-export const getCurrentUser = () => {
+export const getCurrentUser = (): Promise<User | null> => {
     return new Promise((resolve, reject) => {
         const unsubscribe = onAuthStateChanged(
             auth,
