@@ -66,6 +66,7 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@types/redux-logger": "^3.0.9",
     "babel-eslint": "^10.1.0",
     "gh-pages": "^5.0.0"
   }
