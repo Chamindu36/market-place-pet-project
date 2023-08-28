@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, FormEvent, ChangeEvent } from "react";
 import { useDispatch } from "react-redux";
 
 import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
@@ -27,14 +27,14 @@ const SignInForm = () => {
         setFormFields(defaultFormFields);
     };
 
-    const handleChange = (event) => {
+    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
 
         // set only the updated values from the form
         setFormFields({ ...formFields, [name]: value });
     };
 
-    const handleSubmit = async (event) => {
+    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         // resrict the default form submission
         event.preventDefault();
         try {
