@@ -9,6 +9,8 @@ import Shop from "./routes/shop/shop.component";
 import Checkout from "./routes/checkout/checkout.component";
 import Spinner from "./components/spinner/spinner.component";
 
+import { GlobalStyle } from "./global.styles";
+
 // import Home from "./routes/home/home.component";
 // import Authentication from "./routes/authentication/authentication.component";
 
@@ -29,6 +31,7 @@ const App = () => {
   //fallback is the component to be rendered while the lazy component is loading
   return (
     <Suspense fallback={<Spinner />}>
+      <GlobalStyle />
       <Routes>
         <Route path="/" element={<Navigation />}>
           <Route index element={<Home />} />
