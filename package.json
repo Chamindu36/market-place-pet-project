@@ -7,7 +7,6 @@
     "@stripe/react-stripe-js": "^2.1.2",
     "@stripe/stripe-js": "^2.0.0",
     "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^29.5.3",
     "@types/react": "^18.2.20",
@@ -80,6 +79,7 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@testing-library/react": "^14.0.0",
     "@types/redux-logger": "^3.0.9",
     "babel-eslint": "^10.1.0",
     "babel-plugin-macros": "^3.1.0",
