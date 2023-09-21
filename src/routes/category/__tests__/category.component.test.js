@@ -11,6 +11,7 @@ jest.mock('react-router-dom', () => ({
 }));
 
 describe('Category component tests', () => {
+
     test('It should render a Spinner if isLoading', () => {
         renderWithProviders(<Category />, {
             preloadedState: {
