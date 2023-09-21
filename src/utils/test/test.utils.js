@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
 import { rootReducer } from "../../store/root-reducer";
@@ -22,5 +22,5 @@ export function renderWithProviders(
             </Provider>
         );
     }
-    return render(ui, { wrapper: Wrapper, ...renderOptions });
+    return { store, ...render(ui, { wrapper: Wrapper, ...renderOptions }) };
 };
