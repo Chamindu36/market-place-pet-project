@@ -68,4 +68,25 @@ describe('Navigation tests', () => {
 
         expect(screen.queryByText('Your cart is empty')).toBeNull();
     });
+
+    // test('It should dispatch SignOutStart when Sign Out is clicked', () => {
+    //     const mockDispatch = jest.fn();
+    //     jest.spyOn(reactRedux, 'useDispatch').mockReturnValue(mockDispatch);
+
+    //     renderWithProviders(<Navigation />, {
+    //         preloadedState: {
+    //             user: {
+    //                 currentUser: {},
+    //             },
+    //         },
+    //     });
+
+    //     const signOutButton = screen.getByText('SIGN OUT');
+    //     fireEvent.click(signOutButton);
+
+    //     const signoutAction = SignOutStart();
+    //     expect(mockDispatch).toHaveBeenCalledWith(signoutAction);
+    //     mockDispatch.mockClear();
+    // }
+    // );
 });
