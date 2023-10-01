@@ -1,4 +1,3 @@
-import React from 'react';
 import * as reactRedux from 'react-redux';
 import { screen, fireEvent } from '@testing-library/react';
 import { renderWithProviders } from '../../../utils/test/test.utils';
@@ -69,24 +68,24 @@ describe('Navigation tests', () => {
         expect(screen.queryByText('Your cart is empty')).toBeNull();
     });
 
-    // test('It should dispatch SignOutStart when Sign Out is clicked', () => {
-    //     const mockDispatch = jest.fn();
-    //     jest.spyOn(reactRedux, 'useDispatch').mockReturnValue(mockDispatch);
+    test('It should dispatch SignOutStart when Sign Out is clicked', () => {
+        const mockDispatch = jest.fn();
+        jest.spyOn(reactRedux, 'useDispatch').mockReturnValue(mockDispatch);
 
-    //     renderWithProviders(<Navigation />, {
-    //         preloadedState: {
-    //             user: {
-    //                 currentUser: {},
-    //             },
-    //         },
-    //     });
+        renderWithProviders(<Navigation />, {
+            preloadedState: {
+                user: {
+                    currentUser: {},
+                },
+            },
+        });
 
-    //     const signOutButton = screen.getByText('SIGN OUT');
-    //     fireEvent.click(signOutButton);
+        const signOutButton = screen.getByText('SIGN OUT');
+        fireEvent.click(signOutButton);
 
-    //     const signoutAction = SignOutStart();
-    //     expect(mockDispatch).toHaveBeenCalledWith(signoutAction);
-    //     mockDispatch.mockClear();
-    // }
-    // );
+        const signoutAction = SignOutStart();
+        expect(mockDispatch).toHaveBeenCalledWith(signoutAction);
+        mockDispatch.mockClear();
+    }
+    );
 });
